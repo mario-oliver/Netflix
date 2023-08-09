@@ -2,6 +2,6 @@ import { PrismaClient } from '@prisma/client';
 
 declare global {
   namespace globalThis {
-    var primsadb: PrismaClient;
+    var prismadb: PrismaClient;
   }
 }
