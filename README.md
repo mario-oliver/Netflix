@@ -14,3 +14,16 @@ To create a responsive parent Div. Essentially, the background image will have a
 We are utilizing a useCallback() hook to change the page elements from a Login to a Register. This changes key text and populates a username input field.
 
 Finally, we created a React Component called Input to populate each of our necessary inputs. We created a cool translate and hover effect utilizing the peer Tailwind syntax to have two items (the label and input) determine each other's state based on focus. Check it out!
+
+### Installing and Configuring Prisma, MongoDB, and NextAuth
+
+Running the following commands:
+
+- `npm install -D prisma`
+- `npx prisma init`
+
+Creates our /prisma folder with the schema.prisma. We changed our config to be MongoDB. This changes our .env to now point to a placeholder mongoDB URL
+
+We then utilize Prisma Client. However, to get it to run correctly we utilize lib/prismadb.ts & global.d.ts. The implementation functions normal for production, but prevents the spinning up of a ton of prisma instances during hot reloading of next.js.
+
+- `npm install @prisma/client`
