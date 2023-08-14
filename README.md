@@ -24,6 +24,10 @@ Running the following commands:
 
 Creates our /prisma folder with the schema.prisma. We changed our config to be MongoDB. This changes our .env to now point to a placeholder mongoDB URL
 
-We then utilize Prisma Client. However, to get it to run correctly we utilize lib/prismadb.ts & global.d.ts. The implementation functions normal for production, but prevents the spinning up of a ton of prisma instances during hot reloading of next.js.
+We then utilize Prisma Client. However, to get it to run correctly we utilize lib/prismadb.ts & global.d.ts. The implementation functions normal for production, but prevents the spinning up of a ton of prisma instances during hot reloading of next.js. _Note, we ran into some issues with prisma client. Instead I ran 'npm install prisma --save-dev' and that corrected our environment issues._
 
 - `npm install @prisma/client`
+
+Once the models are created run the below command to create your collections using the corresponding models.
+
+- 'npx prisma db push"
