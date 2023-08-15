@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 import Input from '../components/Input';
 import axios from 'axios';
+import { signIn } from 'next-auth/react';
 
 const auth = () => {
   const [email, setEmail] = React.useState('');
@@ -27,6 +28,18 @@ const auth = () => {
     }
   }, [email, name, password]);
 
+  const login = useCallback(async () => {
+    try {
+      //utilizing nextAuth signin function with the [...nextauth].ts configurations id'd as credentials
+      await signIn('credentials', {
+        password,
+        email,
+        redirect: false,
+        callbackUrl: '/',
+      });
+    } catch (error) {}
+  }, [email, password]);
+
   return (
     <div className="relative h-full w-full bg-[url('/images/hero.jpg')] bg-no-repeat bg-center bg-cover">
       <div className="bg-black w-full h-full lg:bg-opacity-50">
@@ -39,7 +52,7 @@ const auth = () => {
               {variant === 'login' ? 'Sign In' : 'Create an Account'}{' '}
             </h2>
             <div className="flex flex-col gap-4">
-              {variant === 'login' && (
+              {variant === 'register' && (
                 <Input
                   label="name"
                   onChange={(e: any) => {
@@ -70,10 +83,10 @@ const auth = () => {
               />
             </div>
             <button
-              onClick={register}
+              onClick={variant === 'login' ? login : register}
               className="bg-red-600 py-3 text-white rounded-md w-full mt-10 hover:bg-red-700 transition"
             >
-              {variant === 'login' ? 'Login' : 'Sing In'}
+              {variant === 'register' ? 'Login' : 'Sign In'}
             </button>
             <p className="text-neutral-500 mt-12">
               {variant === 'login'
