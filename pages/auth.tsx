@@ -2,13 +2,11 @@ import React, { useCallback } from 'react';
 import Input from '../components/Input';
 import axios from 'axios';
 import { signIn } from 'next-auth/react';
-import { useRouter } from 'next/router';
+
 import { FcGoogle } from 'react-icons/fc';
 import { FaGithub } from 'react-icons/fa';
 
 const auth = () => {
-  const router = useRouter();
-
   const [email, setEmail] = React.useState('');
   const [name, setName] = React.useState('');
   const [password, setPassword] = React.useState('');
@@ -27,13 +25,10 @@ const auth = () => {
       await signIn('credentials', {
         password,
         email,
-        redirect: false,
-        callbackUrl: '/',
+        callbackUrl: '/profiles',
       });
-
-      router.push('/');
     } catch (error) {}
-  }, [email, password, router]);
+  }, [email, password]);
 
   const register = useCallback(async () => {
     try {
@@ -102,7 +97,7 @@ const auth = () => {
                 className="w-10 h-10 bg-white rounded-full flex justify-center items-center cursor-pointer
               hover:opacity-80 transition"
                 onClick={() => {
-                  signIn('google', { callbackUrl: '/' });
+                  signIn('google', { callbackUrl: '/profiles' });
                 }}
               >
                 <FcGoogle size={30} />
@@ -111,7 +106,7 @@ const auth = () => {
                 className="w-10 h-10 bg-white rounded-full flex justify-center items-center cursor-pointer
               hover:opacity-80 transition"
                 onClick={() => {
-                  signIn('github', { callbackUrl: '/' });
+                  signIn('github', { callbackUrl: '/profiles' });
                 }}
               >
                 <FaGithub size={30} />
