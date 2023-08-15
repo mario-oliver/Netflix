@@ -1,9 +1,10 @@
 import React, { useCallback } from 'react';
 import Input from '../components/Input';
+import axios from 'axios';
 
 const auth = () => {
   const [email, setEmail] = React.useState('');
-  const [username, setUsername] = React.useState('');
+  const [name, setName] = React.useState('');
   const [password, setPassword] = React.useState('');
 
   const [variant, setVariant] = React.useState('login');
@@ -13,6 +14,18 @@ const auth = () => {
       currentVariant === 'login' ? 'register' : 'login'
     );
   }, []);
+
+  const register = useCallback(async () => {
+    try {
+      await axios.post('/api/register', {
+        email,
+        name,
+        password,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }, [email, name, password]);
 
   return (
     <div className="relative h-full w-full bg-[url('/images/hero.jpg')] bg-no-repeat bg-center bg-cover">
@@ -28,13 +41,13 @@ const auth = () => {
             <div className="flex flex-col gap-4">
               {variant === 'login' && (
                 <Input
-                  label="Username"
+                  label="name"
                   onChange={(e: any) => {
-                    setUsername(e.target.value);
+                    setName(e.target.value);
                   }}
-                  id="username"
+                  id="name"
                   type="text"
-                  value={username}
+                  value={name}
                 />
               )}
               <Input
@@ -56,7 +69,10 @@ const auth = () => {
                 value={password}
               />
             </div>
-            <button className="bg-red-600 py-3 text-white rounded-md w-full mt-10 hover:bg-red-700 transition">
+            <button
+              onClick={register}
+              className="bg-red-600 py-3 text-white rounded-md w-full mt-10 hover:bg-red-700 transition"
+            >
               {variant === 'login' ? 'Login' : 'Sing In'}
             </button>
             <p className="text-neutral-500 mt-12">
