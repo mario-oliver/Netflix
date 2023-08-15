@@ -15,6 +15,8 @@ We are utilizing a useCallback() hook to change the page elements from a Login t
 
 Finally, we created a React Component called Input to populate each of our necessary inputs. We created a cool translate and hover effect utilizing the peer Tailwind syntax to have two items (the label and input) determine each other's state based on focus. Check it out!
 
+To keep our pages safe, we are using JWT. The lib/serverAuth.ts contains the controller code for our session (JWT and session info with proper validation). Our app knows it's using JWT thanks to our [..nextauth] strategy.session.jwt object that we created.
+
 ### Installing and Configuring Prisma, MongoDB, and NextAuth
 
 #### Prisma and MongoDB
