@@ -9,25 +9,25 @@ import { NextPageContext } from 'next';
 
 import { useRouter } from 'next/router';
 
-export async function getServerSideProps(context: NextPageContext) {
-  const session = await getSession(context);
+// export async function getServerSideProps(context: NextPageContext) {
+//   const session = await getSession(context);
 
-  if (session) {
-    return {
-      redirect: {
-        destination: '/',
-        permanent: false,
-      },
-    };
-  }
+//   if (session) {
+//     return {
+//       redirect: {
+//         destination: '/',
+//         permanent: false,
+//       },
+//     };
+//   }
 
-  return {
-    props: {},
-  };
-}
+//   return {
+//     props: {},
+//   };
+// }
 
 const Auth = () => {
-  const router = useRouter();
+  // const router = useRouter();
 
   const [email, setEmail] = React.useState('');
   const [name, setName] = React.useState('');
@@ -47,13 +47,14 @@ const Auth = () => {
       await signIn('credentials', {
         password,
         email,
-        redirect: false,
+        // redirect: false,
         callbackUrl: '/profiles',
       });
 
-      router.push('/profiles');
+      // router.push('/profiles');
     } catch (error) {}
-  }, [email, password, router]);
+    // }, [email, password, router]);
+  }, [email, password]);
 
   const register = useCallback(async () => {
     try {
