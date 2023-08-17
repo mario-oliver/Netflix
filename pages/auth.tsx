@@ -94,7 +94,7 @@ const Auth = () => {
               {variant === 'register' ? 'Login' : 'Sign In'}
             </button>
             <div className="flex flex-row items-center gap-4 mt-8 justify-center">
-              <div
+              {/* <div
                 className="w-10 h-10 bg-white rounded-full flex justify-center items-center cursor-pointer
               hover:opacity-80 transition"
                 onClick={() => {
@@ -102,7 +102,7 @@ const Auth = () => {
                 }}
               >
                 <FcGoogle size={30} />
-              </div>
+              </div> */}
               <div
                 className="w-10 h-10 bg-white rounded-full flex justify-center items-center cursor-pointer
               hover:opacity-80 transition"
