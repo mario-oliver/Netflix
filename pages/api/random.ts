@@ -11,7 +11,7 @@ export default async function handler(
 
   try {
     //check if we are logged in on the server side
-    await serverAuth(req);
+    await serverAuth(req, res);
 
     const movieCount = await prismadb.movie.count();
     const randomIdx = Math.floor(Math.random() * movieCount);
